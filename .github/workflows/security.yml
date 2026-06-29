@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: read
-  security-events: write
 
 jobs:
 
@@ -92,15 +91,16 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build Docker image
         working-directory: project-3-devsecops
-        run: docker build -t devsecops-app:${{ github.sha }} .
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: devsecops-app:${{ github.sha }}
-          format: "table"
-          severity: "CRITICAL,HIGH"
-          exit-code: "0"
-          ignore-unfixed: true
+        run: docker build -t devsecops-app:latest .
+      - name: Run Trivy
+        run: |
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            aquasec/trivy:latest image \
+            --severity CRITICAL,HIGH \
+            --ignore-unfixed \
+            --exit-code 0 \
+            devsecops-app:latest
 
   iac-scan:
     name: IaC Scan (Checkov)
@@ -128,11 +128,9 @@ jobs:
           echo "container-scan:  ${{ needs.container-scan.result }}"
           echo "iac-scan:        ${{ needs.iac-scan.result }}"
           if [[ "${{ needs.secrets-scan.result }}" == "failure" || \
-                "${{ needs.sast.result }}" == "failure" ]]; then
+                "${{ needs.sast.result }}" == "failure" || \
+                "${{ needs.container-scan.result }}" == "failure" ]]; then
             echo "Critical security gate failed."
             exit 1
           fi
           echo "Security gate passed - safe to deploy."
-
-
-          
