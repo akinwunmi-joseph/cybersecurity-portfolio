@@ -1,0 +1,2 @@
+# No external dependencies for the app itself
+# Security tools are run via GitHub Actions (see .github/workflows/security.yml)
