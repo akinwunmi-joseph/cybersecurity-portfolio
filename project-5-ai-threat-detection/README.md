@@ -129,3 +129,4 @@ The system prompt is the core of this tool. Key decisions:
 - [ ] Slack/email alerting for CRITICAL findings
 - [ ] SQLite database to store historical reports and track recurring IOCs
 - [ ] Flask web dashboard for browser-based log submission
+ 
