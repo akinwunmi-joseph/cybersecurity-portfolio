@@ -1,4 +1,4 @@
-# Project 5: AI-Powered Threat Detection 🤖🔐
+# Project 4: AI-Powered Threat Detection 🤖🔐
 
 > **The "AI Security" Flex** — piping raw security logs through an LLM to produce boardroom-ready threat intelligence reports, mirroring tools like Microsoft Security Copilot.
 
