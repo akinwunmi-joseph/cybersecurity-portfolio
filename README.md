@@ -13,8 +13,8 @@ Each project is designed to prove real, practical understanding — not just lib
 | 1 | [Cryptographic Tool](./project-1-cryptography/) | Number theory, RSA, Diffie-Hellman, MITM analysis |
 | 2 | [Network Anomaly Detection](./project-2-anomaly-detection/) | ML, pandas, scikit-learn, DDoS detection |
 | 3 | [Automated DevSecOps Pipeline](./project-3-devsecops/) | GitHub Actions, Trivy, Bandit, secrets scanning |
-| 4 | [Bike Rental Dataset Analysis]
-| 5 | [Ai Threat Detection Tool](./project-5-ai-threat-detection/) | fill out later |
+| 4 | [Ai Threat Detection Tool](./project-4-ai-threat-detection/) | fill out later |
+| 5 | [Bike Rental Dataset Analysis](./project-5-bike-rentals-analysis/) | fill later |
 
 ---
 
