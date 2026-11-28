@@ -16,7 +16,7 @@ This project analyzes and predicts hourly bike rental demand using the UCI Bike 
 | `08_modelling.ipynb` | Model training, evaluation and cross-validation | 01 |
 | `09_actual_vs_predicted.ipynb` | Predicted vs actual rentals for one test week | 01, 08 |
 | `10_error_by_hour.ipynb` | Best model's error by hour | 01, 08 |
-| `11_feature_importance.ipynb` | Permutation feature importance and discussion notes | 01, 08 |
+| `11_feature_importance.ipynb` | Permutation feature importance | 01, 08 |
 
 ## Objectives
 
