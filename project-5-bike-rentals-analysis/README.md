@@ -1,6 +1,22 @@
 # Bike Rental Demand Analysis
 
-This project analyzes and predicts hourly bike rental demand using the UCI Bike Sharing Dataset for the Capital Bikeshare system in Washington, DC. The complete exploratory analysis, preprocessing, feature engineering, modeling, and evaluation workflow is documented in `bike_rentals_analysis.ipynb`.
+This project analyzes and predicts hourly bike rental demand using the UCI Bike Sharing Dataset for the Capital Bikeshare system in Washington, DC. The complete exploratory analysis, preprocessing, feature engineering, modeling, and evaluation workflow is split across the notebooks below.
+
+## Notebooks
+
+| Notebook | Contents | Run first |
+|---|---|---|
+| `01_data_processing.ipynb` | Data loading, preprocessing and feature engineering | – |
+| `02_target_distribution.ipynb` | Distribution of hourly rentals | 01 |
+| `03_hourly_pattern.ipynb` | Rentals by hour, working vs non-working days | 01 |
+| `04_temperature.ipynb` | Rentals vs temperature | 01 |
+| `05_weather.ipynb` | Average rentals by weather | 01 |
+| `06_trend.ipynb` | Daily rentals over time | 01 |
+| `07_correlation.ipynb` | Correlation matrix | 01 |
+| `08_modelling.ipynb` | Model training, evaluation and cross-validation | 01 |
+| `09_actual_vs_predicted.ipynb` | Predicted vs actual rentals for one test week | 01, 08 |
+| `10_error_by_hour.ipynb` | Best model's error by hour | 01, 08 |
+| `11_feature_importance.ipynb` | Permutation feature importance and discussion notes | 01, 08 |
 
 ## Objectives
 
@@ -32,7 +48,7 @@ The analysis uses the following categories of features:
 
 ### 1. Data loading
 
-The notebook downloads the data from the UCI repository with `ucimlrepo`. If internet access is unavailable, `hour.csv` can be downloaded manually and placed in the same folder as the notebook.
+`01_data_processing.ipynb` downloads the data from the UCI repository with `ucimlrepo`. If internet access is unavailable, `hour.csv` can be downloaded manually and placed in the same folder as the notebooks.
 
 ### 2. Data preprocessing
 
@@ -43,7 +59,7 @@ The notebook downloads the data from the UCI repository with `ucimlrepo`. If int
 
 ### 3. Exploratory data analysis
 
-The notebook examines:
+The graph notebooks (02–07) examine:
 
 - The distribution of hourly rental counts
 - Demand differences between working and non-working days
@@ -94,6 +110,19 @@ The primary test metrics are:
 
 The training period is also evaluated with five-fold time-series cross-validation. Additional analyses compare predicted and actual rentals for a test week, measure error by hour, and calculate permutation feature importance.
 
+## Results
+
+Test-period scores (October–December 2012):
+
+| Model | RMSE | MAE | R² |
+|---|---|---|---|
+| Hourly average baseline | 119.59 | 79.95 | 0.648 |
+| Linear Regression | 155.69 | 90.70 | 0.404 |
+| Random Forest | 78.25 | 51.42 | 0.849 |
+| HistGradientBoosting | 67.02 | 42.82 | 0.889 |
+
+HistGradientBoosting performed best. Linear Regression scored worse than the hourly average baseline.
+
 ## Tools and Libraries
 
 - Python
@@ -110,19 +139,19 @@ Install the required packages:
 pip install ucimlrepo pandas numpy matplotlib scikit-learn
 ```
 
-Open and run the notebook from the project directory:
+Start Jupyter from the project directory:
 
 ```bash
-jupyter notebook bike_rentals_analysis.ipynb
+jupyter notebook
 ```
 
-Run all cells from top to bottom. The notebook creates a `figures/` directory containing generated charts and a results table.
+Run `01_data_processing.ipynb` first, then the others in number order, running all cells from top to bottom. The notebooks share data through a `processed/` directory and save charts and the results table to `figures/`.
 
 ## Generated Outputs
 
-The notebook saves the following analysis artifacts:
+The notebooks save the following analysis artifacts:
 
-- Target and feature distributions
+- Target distribution
 - Working-day versus non-working-day demand charts
 - Temperature and weather plots
 - Time trends and correlations
